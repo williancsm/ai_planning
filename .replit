@@ -1,0 +1,11 @@
+# The command that is executed when the run button is clicked.
+run = ["python", "./Tarefa_1/read_planning.py", "./Tarefa_1/planning.txt"]
+
+[nix]
+channel = "stable-21_11"
+
+# Setting environment variables
+[env]
+OPTIC_SOLVER="/home/runner/${REPL_SLUG}/PDDL/Solvers/Optic_Clp"
+FF_SOLVER="/home/runner/${REPL_SLUG}/PDDL/Solvers/Metric_FF_2_0"
+PATH="${FF_SOLVER}/bin:${OPTIC_SOLVER}/bin"

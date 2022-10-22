@@ -1,0 +1,16 @@
+/home/runner/pddl/Optic_Clp/release/CMakeFiles/rebuild_cache.dir
+/home/runner/pddl/Optic_Clp/release/CMakeFiles/edit_cache.dir
+/home/runner/pddl/Optic_Clp/release/VALfiles/CMakeFiles/rebuild_cache.dir
+/home/runner/pddl/Optic_Clp/release/VALfiles/CMakeFiles/parser.dir
+/home/runner/pddl/Optic_Clp/release/VALfiles/CMakeFiles/edit_cache.dir
+/home/runner/pddl/Optic_Clp/release/VALfiles/CMakeFiles/validate.dir
+/home/runner/pddl/Optic_Clp/release/VALfiles/CMakeFiles/Inst.dir
+/home/runner/pddl/Optic_Clp/release/VALfiles/parsing/CMakeFiles/rebuild_cache.dir
+/home/runner/pddl/Optic_Clp/release/VALfiles/parsing/CMakeFiles/edit_cache.dir
+/home/runner/pddl/Optic_Clp/release/VALfiles/parsing/CMakeFiles/ParsePDDL.dir
+/home/runner/pddl/Optic_Clp/release/optic/CMakeFiles/rebuild_cache.dir
+/home/runner/pddl/Optic_Clp/release/optic/CMakeFiles/edit_cache.dir
+/home/runner/pddl/Optic_Clp/release/optic/CMakeFiles/optic-clp.dir
+/home/runner/pddl/Optic_Clp/release/optic/CMakeFiles/OpticCommon.dir
+/home/runner/pddl/Optic_Clp/release/optic/CMakeFiles/doc.dir
+/home/runner/pddl/Optic_Clp/release/optic/CMakeFiles/doxygenoptic.dir

@@ -1,0 +1,17 @@
+with import <nixpkgs> {}; 
+{
+  qpidEnv = stdenvNoCC.mkDerivation {
+    name = "my-gcc8-environment";
+    buildInputs = [
+        gcc8
+        flex_2_5_35      
+        bison
+        cmake
+        clp
+        cbc
+        gsl
+        doxygen
+        bzip2
+    ];
+  };
+}

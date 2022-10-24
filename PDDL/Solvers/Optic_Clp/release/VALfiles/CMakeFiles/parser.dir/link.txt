@@ -1,0 +1,1 @@
+/nix/store/ad7xrkcvxb8xv0qwp4hv2z3f26zi49kf-gcc-wrapper-8.4.0/bin/g++ -O3 -DNDEBUG -rdynamic CMakeFiles/parser.dir/parse.o -o parser  parsing/libParsePDDL.a 

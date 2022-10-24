@@ -1,0 +1,105 @@
+; *************************************************************
+; Item: Domain.pddl
+;
+; Descrição:  Exercício 3. Arquivo domínio.
+; 
+; Nome: Willian Carlos
+;
+; *************************************************************
+
+(define (domain D_Frota_Uber_Autonomo_3)
+
+(:requirements :strips :typing :fluents :constraints :equality)
+
+(:types
+    Local Agente - objects
+    Carro Passageiro - Agente
+)
+
+(:functions
+    (Distancia_Passageiro_1)
+    (Distancia_Passageiro_2)
+    (Distancia_Vazio)
+    (Distancia ?l_1 ?l_2 - Local)
+    (Lotacao ?c - Carro)    
+)
+
+(:predicates
+    (Aguardando ?p - Passageiro  ?l                    - Local)
+    (Esta       ?a - Agente      ?l                    - Local)
+    (Em_Viagem  ?c - Carro       ?p - Passageiro    ?l - Local)
+)
+
+(:action Embarque
+    :parameters (?c - Carro ?p - Passageiro ?l_1 ?l_2 - Local)
+    :precondition (and (Esta       ?c  ?l_1)
+                       (Esta       ?p  ?l_1)
+                       (Aguardando ?p  ?l_2)
+                  )
+    :effect (and (increase (Lotacao ?c) 1.0)
+                 (not (Aguardando ?p ?l_2))
+                 (Em_Viagem ?c ?p ?l_2)
+            )
+)
+
+(:action Desembarque_Destino
+    :parameters (?c - Carro ?p - Passageiro ?l - Local)
+    :precondition (and (Em_Viagem ?c ?p ?l)
+                       (Esta      ?c  ?l)
+                  )
+    :effect (and (not (Em_Viagem ?c ?p ?l))
+                 (decrease (Lotacao ?c) 1.0)
+                 (Esta ?p ?l)
+            )
+)
+
+(:action Desembarque_Antecipado
+    :parameters (?c - Carro ?p - Passageiro ?l_1 ?l_2 - Local)
+    :precondition (and (Em_Viagem ?c ?p ?l_2)
+                       (Esta      ?c  ?l_1)
+                       (not   (= ?l_1 ?l_2))
+                  )
+    :effect (and (not (Em_Viagem ?c ?p ?l_2))
+                 (decrease (Lotacao ?c) 1.0)
+                 (Esta ?p ?l_1)
+                 (Aguardando ?p ?l_2)
+            )
+)
+
+(:action Move_Vazio
+    :parameters (?c - Carro ?l_1 ?l_2 - Local)
+    :precondition (and (> (Distancia ?l_1 ?l_2) 0.0)
+                       (Esta ?c ?l_1)
+                       (= (Lotacao ?c) 0.0)                       
+                  )
+    :effect (and (Esta ?c ?l_2)
+                 (not (Esta ?c ?l_1))
+                 (increase (Distancia_Vazio) (Distancia ?l_1 ?l_2))
+            )
+)
+
+(:action Move_Passageiro_1
+    :parameters (?c - Carro ?l_1 ?l_2 - Local)
+    :precondition (and (> (Distancia ?l_1 ?l_2) 0.0)
+                       (Esta ?c ?l_1)
+                       (= (Lotacao ?c) 1.0)
+                  )
+    :effect (and (Esta ?c ?l_2)
+                 (not (Esta ?c ?l_1))
+                 (increase (Distancia_Passageiro_1) (Distancia ?l_1 ?l_2))
+          )
+)
+
+(:action Move_Passageiro_2
+    :parameters (?c - Carro ?l_1 ?l_2 - Local)
+    :precondition (and (> (Distancia ?l_1 ?l_2) 0.0)
+                       (Esta ?c ?l_1)
+                       (= (Lotacao ?c) 2.0)
+                  )
+    :effect (and (Esta ?c ?l_2)
+                 (not (Esta ?c ?l_1))
+                 (increase (Distancia_Passageiro_2) (Distancia ?l_1 ?l_2))
+          )
+)
+
+)

@@ -1,0 +1,67 @@
+; *************************************************************
+; Item: Domain.pddl
+;
+; Descrição:  Exercício 2. Arquivo domínio.
+; 
+; Nome: Willian Carlos
+;
+; *************************************************************
+
+(define (domain D_Uber_Autonomo)
+
+(:requirements :typing :fluents)
+
+(:types
+    Local Agente - objects
+    Carro Passageiro - Agente
+)
+
+(:functions
+    (Custo_Total)
+    (Distancia   ?l_1 ?l_2 - Local)
+    (Custo_Por_Km)
+)
+
+(:predicates
+    (Disponivel ?c - Carro                             )
+    (Aguardando ?p - Passageiro  ?l_1 ?l_2      - Local)
+    (Esta       ?a - Agente      ?l             - Local)
+    (Em_Viagem  ?c - Carro  ?p - Passageiro  ?l - Local)
+)
+
+(:action Embarque
+    :parameters (?c - Carro ?p - Passageiro ?l_1 ?l_2 - Local)
+    :precondition (and (Disponivel ?c)
+                       (Esta       ?c  ?l_1)
+                       (Esta       ?p  ?l_1)
+                       (Aguardando ?p  ?l_1 ?l_2)
+                  )
+    :effect (and (not (Disponivel ?c))
+                 (not (Aguardando ?p ?l_1 ?l_2))
+                 (Em_Viagem ?c ?p ?l_2)
+            )
+)
+
+(:action Move
+    :parameters (?c - Carro ?l_1 ?l_2 - Local)
+    :precondition (and (> (Distancia ?l_1 ?l_2) 0.0)
+                       (Esta   ?c   ?l_1)
+                  )
+    :effect (and (Esta ?c ?l_2)
+                 (not (Esta ?c ?l_1))
+                 (increase (Custo_Total) (* (Distancia ?l_1 ?l_2) (Custo_Por_Km)))
+            )
+)
+
+(:action Desembarque
+    :parameters (?c - Carro ?p - Passageiro ?l - Local)
+    :precondition (and (Em_Viagem ?c ?p ?l)
+                       (Esta      ?c  ?l)
+                  )
+    :effect (and (not (Em_Viagem ?c ?p ?l))
+                 (Disponivel ?c)
+                 (Esta ?p ?l)
+            )
+)
+
+)

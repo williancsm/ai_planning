@@ -7,8 +7,8 @@
 ;
 ; *************************************************************
 
-(define (problem P_Missoes_Drone)
- (:domain D_Missoes_Drone)
+(define (problem P_Missoes_Drone_1)
+ (:domain D_Missoes_Drone_1)
  
  (:objects 
     Drone_1 - Drone
@@ -18,11 +18,11 @@
  
  (:init
     (Esta       Drone_1         Base_1)
-    (= (Unidade_Bateria Drone_1) 80.0)
-    (= (Max_Bateria) 80.0)
-    (= (Min_Bateria) 20.0)
-    (= (Unidade_Por_Km) 1.0)
-    (= (Distancia_Percorrida) 0.0)
+
+    (= (Bateria Drone_1) 50.0)
+    (= (Velocidade Drone_1) 5.0)
+    (= (Max_Bateria) 50.0)
+    (= (Custo_Por_Km) 1.0)
 
     ; R1 - R2
     (= (Distancia Regiao_1 Regiao_2) 5.0)
@@ -143,15 +143,22 @@
  )
  
  (:goal (and (Esta       Drone_1 Base_1)
-             (Tarefa     Regiao_1)     
-             (Tarefa     Regiao_2)  
-             (Tarefa     Regiao_3)     
-             (Tarefa     Regiao_4)     
-             (Tarefa     Regiao_5)     
-             (Tarefa     Regiao_6)     
+             (Fotos     Regiao_1)     
+             (Fotos     Regiao_2)  
+             (Fotos     Regiao_3)     
+             (Fotos     Regiao_4)     
+             (Fotos     Regiao_5)     
+             (Fotos     Regiao_6)     
+
+             (Inseticida     Regiao_1)     
+             (Inseticida     Regiao_2)  
+             (Inseticida     Regiao_3)     
+             (Inseticida     Regiao_4)     
+             (Inseticida     Regiao_5)     
+             (Inseticida     Regiao_6)     
         )
  )
 
-(:metric minimize (Distancia_Percorrida))
+(:metric minimize (total-time))
 
 )

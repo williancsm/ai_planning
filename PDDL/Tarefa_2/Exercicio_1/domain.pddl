@@ -1,15 +1,15 @@
 ; *************************************************************
 ; Item: domain.pddl
 ;
-; Descrição:  Tarefa 2. Exercício 1. Arquivo domínio.
+; Descrição:  Tarefa 2. Exercício 1. Arquivo domínio 1.
 ; 
 ; Nome: Willian Carlos
 ;
 ; *************************************************************
 
-(define (domain D_Missoes_Drone)
+(define (domain D_Missoes_Drone_1)
 
-(:requirements :typing :fluents)
+(:requirements :typing :fluents :action-costs :durative-actions)
 
 (:types
     Local Drone - objects
@@ -17,46 +17,55 @@
 )
 
 (:functions
-    (Unidade_Bateria ?d - Drone)
-    (Min_Bateria)
+    (Bateria ?drone - Drone)
+    (Velocidade ?drone - Drone)
     (Max_Bateria)
-    (Distancia   ?l_1 ?l_2 - Local)
-    (Unidade_Por_Km)
-    (Distancia_Percorrida)
+    (Distancia   ?local_1 ?local_2 - Local)
+    (Custo_Por_Km)
 )
 
 (:predicates
-    (Esta       ?d - Drone      ?l             - Local)
-    (Tarefa     ?r             - Regiao)
+    (Esta       ?drone - Drone  ?local - Local)
+    (Fotos      ?regiao - Regiao)
+    (Inseticida ?regiao - Regiao)
 )
 
-(:action Move
-    :parameters (?d - Drone ?l_1 ?l_2 - Local)
-    :precondition (and (> (Distancia ?l_1 ?l_2) 0.0)
-                       (Esta   ?d   ?l_1)
-                       (>  (- (Unidade_Bateria ?d) (* (Distancia ?l_1 ?l_2) (Unidade_Por_Km))) 0.0)
+(:action Tirar_Fotos
+    :parameters (?drone - Drone ?regiao - Regiao)
+    :precondition (and (Esta   ?drone ?regiao)
                   )
-    :effect (and (Esta ?d ?l_2)
-                 (not (Esta ?d ?l_1))
-                 (decrease (Unidade_Bateria ?d) (* (Distancia ?l_1 ?l_2) (Unidade_Por_Km)))
-                 (increase (Distancia_Percorrida) (Distancia ?l_1 ?l_2))
+    :effect (and (Fotos ?regiao)
             )
 )
 
-(:action Executar_Tarefa
-    :parameters (?d - Drone ?r - Regiao)
-    :precondition (and (Esta   ?d ?r)
+(:action Aspergir_Inseticida
+    :parameters (?drone - Drone ?regiao - Regiao)
+    :precondition (and (Esta ?drone ?regiao)
                   )
-    :effect (and (Tarefa ?r)
+    :effect (and (Inseticida ?regiao)
             )
 )
 
-(:action Recarregar
-    :parameters (?d - Drone ?b - Base)
-    :precondition (and (Esta   ?d ?b)
+(:action Recarregar_Bateria
+    :parameters (?drone - Drone ?base - Base)
+    :precondition (and (Esta   ?drone ?base)
                   )
-    :effect (and (assign (Unidade_Bateria ?d) (Max_Bateria))
+    :effect (and (assign (Bateria ?drone) (Max_Bateria))
             )
 )
+
+(:durative-action Voa
+    :parameters (?drone - Drone ?origem ?destino - Local)
+    :duration   (= ?duration (/ (Distancia ?origem ?destino) (Velocidade ?drone)) 
+                ) 
+    :condition  (and (over all (> (Bateria ?drone) 0.0))
+                     (over all (> (Distancia ?origem ?destino) 0.0))
+                     (over all (Esta ?drone ?origem))
+                )                                
+    :effect     (and (at start (decrease (Bateria ?drone) (* (Distancia ?origem ?destino) (Custo_Por_Km))))
+                     (at end (Esta ?drone ?destino))
+                     (at end (not (Esta ?drone ?origem)))
+                )
+)   
 
 )

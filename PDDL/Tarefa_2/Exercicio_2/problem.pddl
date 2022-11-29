@@ -12,24 +12,26 @@
  
  (:objects 
     Drone_1 - Drone
-    Regiao_1 Regiao_2 Regiao_3 Regiao_4 Regiao_5 Regiao_6 - Regiao
-    Base_1 Base_2 Base_3 - Base
+    Regiao_1 Regiao_2 - Regiao; Regiao_3 Regiao_4 Regiao_5 Regiao_6 - Regiao
+    Base_1 Base_2 - Base; Base_3 - Base
     Aspergir_Inseticida Tirar_Fotos - Missao    
  )
  
  (:init
     ; Constantes
-    (= (Max_Bateria) 50.0)
+    (= (Max_Bateria) 150.0)
     (= (Max_Insumo Aspergir_Inseticida) 30.0)
     (= (Max_Insumo Tirar_Fotos) 150.0)
+    (= (Distancia_Total) 0.0)
 
     ; Localização
     (Esta       Drone_1         Base_1)
 
     ; Recursos
-    (= (Bateria Drone_1) 50.0)
-    (= (Insumo Drone_1 Aspergir_Inseticida) 30.0)
-    (= (Insumo Drone_1 Tirar_Fotos) 150.0)
+    (= (Bateria Drone_1) 999.0)
+    (= (Insumo Drone_1 Aspergir_Inseticida) 999.0)
+    (= (Insumo Drone_1 Tirar_Fotos) 999.0)
+    (Disponivel Drone_1)
 
     ; Velocidade
     (= (Velocidade Drone_1) 5.0)
@@ -37,13 +39,13 @@
     ; Custos
     (= (Custo_Bateria_Por_Km) 1.0)
     (= (Custo_Insumo_Por_Km Aspergir_Inseticida) 1.0)
-    (= (Custo_Insumo_Por_Km Tirar_Fotos) 20.0)
+    (= (Custo_Insumo_Por_Km Tirar_Fotos) 1.0)
     
     ; Missões
     (Planejada  Aspergir_Inseticida Regiao_1)
     (Planejada  Tirar_Fotos Regiao_1)
-    (Planejada  Aspergir_Inseticida Regiao_2)
-    (Planejada  Tirar_Fotos Regiao_2)
+    ;(Planejada  Aspergir_Inseticida Regiao_2)
+    ;(Planejada  Tirar_Fotos Regiao_2)
     ;(Planejada  Aspergir_Inseticida Regiao_3)
     ;(Planejada  Tirar_Fotos Regiao_3)
     ;(Planejada  Aspergir_Inseticida Regiao_4)
@@ -189,10 +191,18 @@
     ;(= (Distancia_Mapa Base_2 Base_3) 40.0)
     ;(= (Distancia_Mapa Base_3 Base_2) 40.0)
  )
+
+(:constraints
+  (and 
+    (forall (?drone - Drone) (always (> (Bateria ?drone) 0.0)))
+    (forall (?drone - Drone ?missao - Missao) (always (>= (Insumo ?drone ?missao) 0.0)))
+  )
+)
  
- (:goal (and (Esta       Drone_1 Base_1)
-             ;(Concluida  Aspergir_Inseticida Regiao_1)
-             ;(Concluida  Tirar_Fotos Regiao_1)
+ (:goal (and (Esta       Drone_1 Base_2)
+             (Concluida  Aspergir_Inseticida Regiao_1)
+             (Concluida  Tirar_Fotos Regiao_1)
+             (<= (Distancia_Total) 20.0)
              ;(Concluida  Aspergir_Inseticida Regiao_2)
              ;(Concluida  Tirar_Fotos Regiao_2)
              ;(Concluida  Aspergir_Inseticida Regiao_3)
@@ -208,6 +218,8 @@
         )
  )
 
-(:metric minimize (total-time))
+(:metric minimize (Distancia_Total) 
+                  
+)
 
 )

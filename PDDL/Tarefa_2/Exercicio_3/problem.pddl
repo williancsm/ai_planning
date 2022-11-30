@@ -1,7 +1,7 @@
 ; *************************************************************
 ; Item: problem.pddl
 ;
-; Descrição:  Tarefa 2. Exercício 3. Arquivo problema 2.
+; Descrição:  Tarefa 2. Exercício 3. Arquivo problema 3.
 ; 
 ; Nome: Willian Carlos
 ;
@@ -200,8 +200,8 @@
  (:goal (and (Esta       Drone_1 Base_2)
              (Concluida  Aspergir_Inseticida Regiao_1)
              (Concluida  Tirar_Fotos Regiao_1)
-             ;(Concluida  Aspergir_Inseticida Regiao_2),
-             ;(Concluida  Tirar_Fotos Regiao_2)
+             (Concluida  Aspergir_Inseticida Regiao_2),
+             (Concluida  Tirar_Fotos Regiao_2)
              ;(Concluida  Aspergir_Inseticida Regiao_3)
              ;(Concluida  Tirar_Fotos Regiao_3)
              ;(Concluida  Aspergir_Inseticida Regiao_4)

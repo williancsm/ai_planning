@@ -1,14 +1,14 @@
 ; *************************************************************
 ; Item: problem.pddl
 ;
-; Descrição:  Tarefa 2. Exercício 2. Arquivo problema 2.
+; Descrição:  Tarefa 2. Exercício 3. Arquivo problema 2.
 ; 
 ; Nome: Willian Carlos
 ;
 ; *************************************************************
 
-(define (problem P_Missoes_Drone_2)
- (:domain D_Missoes_Drone_2)
+(define (problem P_Missoes_Drone_3)
+ (:domain D_Missoes_Drone_3)
  
  (:objects 
     Drone_1 - Drone

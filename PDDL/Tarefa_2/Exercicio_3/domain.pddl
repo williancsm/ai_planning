@@ -1,13 +1,13 @@
 ; *************************************************************
 ; Item: domain.pddl
 ;
-; Descrição:  Tarefa 2. Exercício 2. Arquivo domínio.
+; Descrição:  Tarefa 2. Exercício 3. Arquivo domínio.
 ; 
 ; Nome: Willian Carlos
 ;
 ; *************************************************************
 
-(define (domain D_Missoes_Drone_2)
+(define (domain D_Missoes_Drone_3)
 
 (:requirements :typing :action-costs :durative-actions :constraints :quantified-preconditions)
 

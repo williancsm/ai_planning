@@ -30,8 +30,10 @@ args = [
 env = { LD_LIBRARY_PATH = "$PYTHON_LD_LIBRARY_PATH" }
 
 [env]
+OPTIC_BIN = "/home/runner/${REPL_SLUG}/PDDL/Solvers/Optic_Clp/bin"
+POPF_BIN = "/home/runner/${REPL_SLUG}/PDDL/Solvers/POPF_2/bin"
 VIRTUAL_ENV = "/home/runner/${REPL_SLUG}/venv"
-PATH = "${VIRTUAL_ENV}/bin"
+PATH = "${VIRTUAL_ENV}/bin:${OPTIC_BIN}:${POPF_BIN}"
 PYTHONPATH = "${VIRTUAL_ENV}/lib/python3.10/site-packages"
 REPLIT_POETRY_PYPI_REPOSITORY = "https://package-proxy.replit.com/pypi/"
 MPLBACKEND = "TkAgg"

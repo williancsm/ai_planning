@@ -9,7 +9,9 @@
 
 (define (domain D_Missoes_Drone_3)
 
-(:requirements :typing :action-costs :durative-actions :constraints :quantified-preconditions)
+(:requirements :fluents :adl :typing :numeric-fluents :continuous-effects :action-costs :durative-actions :constraints :quantified-preconditions)
+
+
 
 (:types
     Drone Missao Local - objects
@@ -80,7 +82,7 @@
                      (at start (Disponivel ?drone))
                 )                                
     :effect     (and (at start (decrease (Bateria ?drone) (* (Distancia_Missao ?missao ?regiao) (Custo_Bateria_Por_Km))))
-                     (at start (decrease (Insumo ?drone ?missao) (* (Distancia_Missao ?missao ?regiao) (Custo_Insumo_Por_Km ?missao))))
+                     (at start (decrease (Insumo ?drone ?missao) (* #t 5.0)))
                      (at start (not (Disponivel ?drone)))
                      (at end   (Disponivel ?drone))
                      (at start (not (Planejada ?missao ?regiao)))

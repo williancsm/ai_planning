@@ -1,0 +1,2 @@
+/nix/store/v8imx1nvyz0hgvx9cbcmh6gp4ngw3ffj-binutils-2.35.1/bin/ar qc libParsePDDL.a CMakeFiles/ParsePDDL.dir/pddl+.o CMakeFiles/ParsePDDL.dir/ptree.o CMakeFiles/ParsePDDL.dir/DebugWriteController.o
+/nix/store/v8imx1nvyz0hgvx9cbcmh6gp4ngw3ffj-binutils-2.35.1/bin/ranlib libParsePDDL.a

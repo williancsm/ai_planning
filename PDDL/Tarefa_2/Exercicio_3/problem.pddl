@@ -1,19 +1,19 @@
 ; *************************************************************
 ; Item: problem.pddl
 ;
-; Descrição:  Tarefa 2. Exercício 3. Arquivo problema 3.
+; Descrição:  Tarefa 2. Exercício 2. Arquivo problema 2.
 ; 
 ; Nome: Willian Carlos
 ;
 ; *************************************************************
 
-(define (problem P_Missoes_Drone_3)
- (:domain D_Missoes_Drone_3)
+(define (problem P_Missoes_Drone_2)
+ (:domain D_Missoes_Drone_2)
  
  (:objects 
     Drone_1 - Drone
-    Regiao_1 Regiao_2 - Regiao; Regiao_3 Regiao_4 Regiao_5 Regiao_6 - Regiao
-    Base_1 Base_2 - Base; Base_3 - Base
+    Regiao_1 Regiao_2 - Regiao;Regiao_3 Regiao_4 Regiao_5 Regiao_6 - Regiao
+    Base_1 Base_2 - Base;Base_3 - Base
     Aspergir_Inseticida Tirar_Fotos - Missao    
  )
  
@@ -36,6 +36,10 @@
 
     ; Velocidade
     (= (Velocidade Drone_1) 5.0)
+    ; Alta penalidade por recarregar bateria
+    (= (Recarregar_Bateria_Por_Tempo) 0.5)
+    (= (Recarregar_Insumo_Por_Tempo Aspergir_Inseticida) 1.0)
+    (= (Recarregar_Insumo_Por_Tempo Tirar_Fotos) 1.0)
 
     ; Custos
     (= (Custo_Bateria_Por_Km) 1.0)

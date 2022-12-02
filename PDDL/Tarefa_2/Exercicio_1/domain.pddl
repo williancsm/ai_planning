@@ -1,7 +1,7 @@
 ; *************************************************************
 ; Item: domain.pddl
 ;
-; Descrição:  Tarefa 2. Exercício 1. Arquivo domínio 1.
+; Descrição:  Tarefa 2. Exercício 1. Arquivo domínio.
 ; 
 ; Nome: Willian Carlos
 ;

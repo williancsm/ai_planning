@@ -1,7 +1,7 @@
 ; *************************************************************
 ; Item: problem.pddl
 ;
-; Descrição:  Tarefa 2. Exercício 1. Arquivo problema 1.
+; Descrição:  Tarefa 2. Exercício 1. Arquivo problema.
 ; 
 ; Nome: Willian Carlos
 ;
